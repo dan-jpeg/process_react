@@ -51,7 +51,7 @@ const ParticleSketch = ({
             }
 
             p.setup = () => {
-                p.createCanvas(p.windowWidth * 0.9, canvasHeight).parent(
+                p.createCanvas(p.windowWidth, canvasHeight).parent(
                     "sketch-container"
                 );
                 p.angleMode(p.DEGREES);
@@ -77,7 +77,7 @@ const ParticleSketch = ({
         return () => {
             myp5.remove();
         };
-    }, [noiseRatio, nb, strokeW, margin, topBotMargin, backgroundColor, strokeColor]);
+    }, [noiseRatio, nb, strokeW, margin, topBotMargin, backgroundColor, strokeColor, xVel]);
 
     return <div id="sketch-container" />;
 };

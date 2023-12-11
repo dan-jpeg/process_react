@@ -30,16 +30,15 @@
     display: grid;
     grid-template-columns: 1fr 150px 1fr; /* 150px is the approximated width of the logos, adjust accordingly */
     align-items: center; /* vertically center items */
-    height: 80px;
+    height: 130px;
     width: 90vw;
     margin: 0 auto;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
+    background: transparent;
     border-radius: 10px;
     overflow: hidden; /* Ensure logos don't overflow the navbar */
     position: sticky;
     top: 0;
-    padding-top: .75rem;
+    padding-top: 2vh;
     font-family: "Neue Haas Grotesk", sans-serif;
     font-weight: bold;
     font-size: .55rem;
@@ -80,20 +79,22 @@ input {
 }
 .logo {
     grid-area: 1 / 1 / 2 / 2;
-    transition: transform 0.3s ease;
-    height: 72px
+    transition: transform 0.33s ease;
+    height: 120px;
 }
 
 .big-logo {
-    transform: translateY(0);
+    transform: translateY(10%);
+    padding-top: 2vh;
 }
 
 .small-logo {
     transform: translateY(100%);
+
 }
 
 .move-up.big-logo {
-    transform: translateY(-100%);
+    transform: translateY(-150%);
 }
 
 .move-up.small-logo {

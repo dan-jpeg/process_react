@@ -20,6 +20,7 @@ const Navbar = ({
                     handleNoiseRatioChange,
                     handleStrokeColorChange,
                     handleStrokeWChange,
+                    xVel, yVel, handleXVelChange, handleYVelChange
                 }) => {
     const [scrolled, setScrolled] = useState(false);
 
@@ -75,6 +76,21 @@ const Navbar = ({
 
             <div className="navbar-right">
                 <ul className={`link down-link-right ${scrolled ? "move-up" : ""}`}>
+                    <span>  xVel </span>{" "}
+
+
+                    <input
+                        type="number"
+                        value={xVel[0]}
+                        onChange={(e) => handleXVelChange([e.target.value, xVel[1]])}
+                        />
+
+                    <input
+                        type="number"
+                        value={xVel[1]}
+                        onChange={(e) => handleXVelChange([xVel[0], e.target.value])}
+                        />
+
                     <span>  MARGIN ></span>{" "}
                     <input
                         type="number"
