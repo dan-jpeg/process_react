@@ -13,6 +13,7 @@ function App() {
     const [strokeColor, setStrokeColor] = useState([255, 255, 255]);
     const [xVel, setXVel] = useState([-1, 20]);
     const [yVel, setYVel] = useState([-1, 0.05]);
+    const [canvasHeight, setCanvasHeight] = useState(600);
 
     return (
         <div className="App">
@@ -43,7 +44,16 @@ function App() {
                 strokeColor={strokeColor}
                 xVel={xVel}
                 yVel={yVel}
+                canvasHeight={canvasHeight}
             />
+            <div className="footer" >
+
+                <span>h </span>
+                <input type="string"
+                       value={canvasHeight}
+                       onChange={(e) => setCanvasHeight(parseInt(e.target.value, 10))}
+                />
+            </div>
         </div>
     );
 }

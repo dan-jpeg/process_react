@@ -10,7 +10,7 @@ const ParticleSketch = ({
                             topBotMargin = 100,
                             backgroundColor = [240, 235, 235],
                             strokeColor = [1, 1, 1],
-                            xVel, yVel
+                            xVel, yVel, canvasHeight
                         }) => {
     useEffect(() => {
         const myp5 = new p5((p) => {
@@ -51,7 +51,7 @@ const ParticleSketch = ({
             }
 
             p.setup = () => {
-                p.createCanvas(p.windowWidth * 0.9, p.windowHeight * 0.6).parent(
+                p.createCanvas(p.windowWidth * 0.9, canvasHeight).parent(
                     "sketch-container"
                 );
                 p.angleMode(p.DEGREES);
