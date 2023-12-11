@@ -44,8 +44,6 @@ const Navbar = ({
                     <span>noise</span>{" "}
                     <input
                         type="number"
-                        min="0.001"
-                        max="0.1"
                         value={noiseRatio}
                         onChange={(e) => handleNoiseRatioChange(parseFloat(e.target.value))}
                     />
