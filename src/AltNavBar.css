@@ -1,0 +1,141 @@
+@font-face {
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    src: local('Neue Haas Grotesk'), url('./fonts/nhgd/NeueHaasGrotDisp-55Roman-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    src: local('Neue Haas Grotesk'), url('./fonts/nhgd/NeueHaasGrotDisp-75Bold-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    src: local('Neue Haas Grotesk'), url('./fonts/nhgd/NeueHaasGrotDisp-66MediumItalic-Trial.otf') format('opentype');
+    font-weight: normal;
+    font-style: italic;
+}
+
+@font-face {
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    src: local('Neue Haas Grotesk'), url('./fonts/nhgd/NeueHaasGrotDisp-76BoldItalic-Trial.otf') format('opentype');
+    font-weight: bold;
+    font-style: italic;
+}
+
+.navbar {
+    display: grid;
+    grid-template-columns: 1fr 150px 1fr; /* 150px is the approximated width of the logos, adjust accordingly */
+    align-items: center; /* vertically center items */
+    height: 80px;
+    width: 90vw;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    overflow: hidden; /* Ensure logos don't overflow the navbar */
+    position: sticky;
+    top: 0;
+    padding-top: .75rem;
+    font-family: "Neue Haas Grotesk", sans-serif;
+    font-weight: bold;
+    font-size: .55rem;
+    text-transform: uppercase;
+    padding-bottom: -5vh;
+}
+
+.navbar span {
+    padding: 12px;
+}
+.navbar-left {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start; /* Aligns to the left edge */
+    padding-left: 10px; /* Some padding to ensure it doesn't stick right to the edge */
+}
+
+.navbar-right {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end; /* Aligns to the right edge */
+    padding-right: 10px; /* Some padding to ensure it doesn't stick right to the edge */
+}
+
+.navbar-center {
+    align-items: center;
+    position: relative;
+    display: grid; /* this ensures the logos can stack */
+    justify-content: center;
+}
+
+input {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    color: #333;
+    ]font-family: 'Neue Haas Grotesk', sans-serif;
+}
+.logo {
+    grid-area: 1 / 1 / 2 / 2;
+    transition: transform 0.3s ease;
+    height: 72px
+}
+
+.big-logo {
+    transform: translateY(0);
+}
+
+.small-logo {
+    transform: translateY(100%);
+}
+
+.move-up.big-logo {
+    transform: translateY(-100%);
+}
+
+.move-up.small-logo {
+    transform: translateY(0);
+}
+
+/* ... existing styles ... */
+
+/* ... existing styles ... */
+
+.link {
+    text-decoration: none;
+    color: #333;
+    transition: transform 0.3s ease, opacity 0.3s ease;
+    display: inline-block;
+    opacity: 0; /* Starts as invisible */
+    transform: translateY(30%); /* Add a little bit of vertical motion */
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    font-weight: bold;
+    font-size: 1.2em;
+}
+
+.move-up.link {
+    opacity: 1; /* Makes it visible */
+    transform: translateY(0); /* Reset the position */
+}
+
+
+.down-link-right {
+    transform: translateY(100%); /* Start below, out of view */
+    padding-left: 1rem;
+}
+
+.down-link-left {
+    transform: translateY(100%); /* Start below, out of view */
+    padding-right: 1rem;
+}
+
+.move-up.left-link {
+    transform: translateY(0); /* Move the left link to normal position */
+}
+
+.move-up.right-link {
+    transform: translateY(0); /* Move the right link to normal position */
+}
