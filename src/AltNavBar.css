@@ -28,9 +28,9 @@
 
 .navbar {
     display: grid;
-    grid-template-columns: 1fr 150px 1fr; /* 150px is the approximated width of the logos, adjust accordingly */
+    grid-template-columns: 1fr 400px 1fr; /* 150px is the approximated width of the logos, adjust accordingly */
     align-items: center; /* vertically center items */
-    height: 130px;
+    height: 200px;
     width: 90vw;
     margin: 0 auto;
     background: transparent;
@@ -54,6 +54,8 @@
     align-items: center;
     justify-content: flex-start; /* Aligns to the left edge */
     padding-left: 10px; /* Some padding to ensure it doesn't stick right to the edge */
+    flex-direction: column;
+    text-align: left;
 }
 
 .navbar-right {

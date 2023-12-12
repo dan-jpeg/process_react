@@ -15,6 +15,21 @@ function App() {
     const [yVel, setYVel] = useState([-1, 0.05]);
     const [canvasHeight, setCanvasHeight] = useState(window.innerHeight * 0.6);
 
+    const hexToRgb = (hex) => {
+        const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
+        return result ? [
+            parseInt(result[1], 16),
+            parseInt(result[2], 16),
+            parseInt(result[3], 16)
+        ] : null;
+    };
+
+    const handleBackgroundColorChange = (hexValue) => {
+        const rgbArray = hexToRgb(hexValue);
+        setBackgroundColor(rgbArray);
+    };
+
+
     return (
         <div className="App">
             <Navbar
@@ -30,7 +45,7 @@ function App() {
                 handleStrokeWChange={(value) => setStrokeW(value)}
                 handleMarginChange={(value) => setMargin(parseInt(value, 10))}
                 handleTopBotMarginChange={(value) => setTopBotMargin(parseInt(value, 10))}
-                handleBackgroundColorChange={(value) => setBackgroundColor(value)}
+                handleBackgroundColorChange={handleBackgroundColorChange}
                 handleStrokeColorChange={(value) => setStrokeColor(value)}
                 xVel={xVel}
                 yVel={yVel}
