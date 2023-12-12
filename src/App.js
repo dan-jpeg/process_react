@@ -7,13 +7,13 @@ function App() {
     const [noiseRatio, setNoiseRatio] = useState(0.001);
     const [nb, setNb] = useState(250);
     const [strokeW, setStrokeW] = useState(1.66);
-    const [margin, setMargin] = useState(window.innerWidth * 0.15);
-    const [topBotMargin, setTopBotMargin] = useState(window.innerWidth * 0.10);
+    const [margin, setMargin] = useState(parseInt(window.innerWidth * 0.20))
     const [backgroundColor, setBackgroundColor] = useState([230, 230, 230]);
     const [strokeColor, setStrokeColor] = useState([255, 255, 255]);
     const [xVel, setXVel] = useState([-1, 20]);
     const [yVel, setYVel] = useState([-1, 0.05]);
-    const [canvasHeight, setCanvasHeight] = useState(window.innerHeight * 0.6);
+    const [canvasHeight, setCanvasHeight] = useState(parseInt(window.innerHeight * 0.6));
+    const [topBotMargin, setTopBotMargin] = useState(parseInt(window.innerWidth * 0.10));
 
     const hexToRgb = (hex) => {
         const result = /^#?([a-f\d]{2})([a-f\d]{2})([a-f\d]{2})$/i.exec(hex);
@@ -72,6 +72,7 @@ function App() {
                        value={canvasHeight}
                        onChange={(e) => setCanvasHeight(parseInt(e.target.value, 10))}
                 />
+
             </div>
         </div>
     );

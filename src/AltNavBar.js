@@ -24,6 +24,8 @@
                     }) => {
         const [scrolled, setScrolled] = useState(false);
 
+        const [isMarginFocused, setIsMarginFocused] = useState(false);
+
         useEffect(() => {
             const handleScroll = () => {
                 if (window.scrollY > 10) {
@@ -37,23 +39,29 @@
             return () => window.removeEventListener("scroll", handleScroll);
         }, []);
 
+
+
         return (
             <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
                 <div className="navbar-left">
                     <ul href="#" className={`link ${scrolled ? "move-up" : ""}`}>
-                        <span>noise</span>
+                        <div>
+                        <span>noise</span>{" "}
                         <input
                             type="number"
                             value={noiseRatio}
                             onChange={(e) => handleNoiseRatioChange(parseFloat(e.target.value))}
                         />
-                        <span>amount</span>
+                        </div>
+                        <div>
+                        <span>amount</span>{" "}
                         <input
                             type="number"
                             value={nb}
                             onChange={(e) => handleNbChange(e.target.value)}
                         />
-                        <span>weight</span>
+
+                        <span>weight</span>{" "}
                         <input
                             type="number"
                             min="1"
@@ -62,12 +70,36 @@
                             value={strokeW}
                             onChange={(e) => handleStrokeWChange(parseFloat(e.target.value))}
                         />
-
-                        <input
-                            type="color"
-                            value={backgroundColor}
-                            onChange={(e) => handleBackgroundColorChange(e.target.value)}
+                        </div>
+                        <div>
+                        <span>  MARGIN H</span>{" "}
+                        <input className="margin-input"
+                               type="number"
+                               value={margin}
+                               onChange={(e) => handleMarginChange(e.target.value)}
                         />
+
+                        <span>MARGIN V</span>{" "}
+                        <input
+                            type="number"
+                            value={topBotMargin}
+                            onChange={(e) => handleTopBotMarginChange(e.target.value)}
+                        />
+                        </div>
+                        <div>
+                        {/*<input className="xvel-input1"*/}
+                        {/*       type="number"*/}
+                        {/*       value={xVel[0]}*/}
+                        {/*       onChange={(e) => handleXVelChange([e.target.value, xVel[1]])}*/}
+                        {/*/>*/}
+
+                        {/*<input className="xvel-input"*/}
+                        {/*       type="number"*/}
+                        {/*       value={xVel[1]}*/}
+                        {/*       onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
+                        {/*/>*/}
+
+                        </div>
                     </ul>
                 </div>
                 <div className="navbar-center">
@@ -80,31 +112,23 @@
 
                 <div className="navbar-right">
                     <ul className={`link down-link-right ${scrolled ? "move-up" : ""}`}>
-                        <span>  xVel </span>{" "}
+
+                        {/*<input className="xvel-input1"*/}
+                        {/*    type="number"*/}
+                        {/*    value={xVel[0]}*/}
+                        {/*    onChange={(e) => handleXVelChange([e.target.value, xVel[1]])}*/}
+                        {/*    />*/}
+
+                        {/*<input className="xvel-input"*/}
+                        {/*    type="number"*/}
+                        {/*    value={xVel[1]}*/}
+                        {/*    onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
+                        {/*    />*/}
 
                         <input
-                            type="number"
-                            value={xVel[0]}
-                            onChange={(e) => handleXVelChange([e.target.value, xVel[1]])}
-                            />
-
-                        <input
-                            type="number"
-                            value={xVel[1]}
-                            onChange={(e) => handleXVelChange([xVel[0], e.target.value])}
-                            />
-
-                        <span>  MARGIN ></span>{" "}
-                        <input
-                            type="number"
-                            value={margin}
-                            onChange={(e) => handleMarginChange(e.target.value)}
-                        />
-                        <span>MARGIN ^</span>{" "}
-                        <input
-                            type="number"
-                            value={topBotMargin}
-                            onChange={(e) => handleTopBotMarginChange(e.target.value)}
+                            type="color"
+                            value={backgroundColor}
+                            onChange={(e) => handleBackgroundColorChange(e.target.value)}
                         />
                     </ul>
                 </div>

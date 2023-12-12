@@ -6,10 +6,10 @@ const ParticleSketch = ({
                             noiseRatio = 0.001,
                             nb = 250,
                             strokeW = 1.66,
-                            margin = 100,
-                            topBotMargin = 100,
-                            backgroundColor = [240, 235, 235],
-                            strokeColor = [1, 1, 1],
+                            margin,
+                            topBotMargin,
+                            backgroundColor,
+                            strokeColor,
                             xVel, yVel, canvasHeight
                         }) => {
     useEffect(() => {

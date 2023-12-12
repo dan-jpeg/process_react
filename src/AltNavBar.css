@@ -31,7 +31,7 @@
     grid-template-columns: 1fr 400px 1fr; /* 150px is the approximated width of the logos, adjust accordingly */
     align-items: center; /* vertically center items */
     height: 200px;
-    width: 90vw;
+    width: 100vw;
     margin: 0 auto;
     background: transparent;
     border-radius: 10px;
@@ -41,28 +41,28 @@
     padding-top: 2vh;
     font-family: "Neue Haas Grotesk", sans-serif;
     font-weight: bold;
-    font-size: .55rem;
+    font-size: .66rem;
     text-transform: uppercase;
     z-index: 1;
+    justify-content: space-between;
 }
 
-.navbar span {
-    padding: 12px;
-}
 .navbar-left {
-    display: flex;
+    display: inline-block;
     align-items: center;
     justify-content: flex-start; /* Aligns to the left edge */
     padding-left: 10px; /* Some padding to ensure it doesn't stick right to the edge */
     flex-direction: column;
     text-align: left;
+    min-width: 177px;
 }
 
 .navbar-right {
     display: flex;
-    align-items: center;
-    justify-content: flex-end; /* Aligns to the right edge */
+    align-items: flex-start;
+    justify-content: space-around; /* Aligns to the right edge */
     padding-right: 10px; /* Some padding to ensure it doesn't stick right to the edge */
+    min-width: 177px;
 }
 
 .navbar-center {
@@ -70,15 +70,39 @@
     position: relative;
     display: grid; /* this ensures the logos can stack */
     justify-content: center;
+    min-width: 33%;
 }
 
-input {
+input[type="number"]{
     background-color: transparent;
     border: none;
     outline: none;
     color: #333;
-    ]font-family: 'Neue Haas Grotesk', sans-serif;
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    opacity: 1;
+    transition: opacity 0.3s ease;
+
 }
+
+
+input:focus {
+    opacity: 1;
+}
+
+input[type="number"] {
+    width: 50px;
+}
+
+input[type="color"] {
+    width: 100px;
+    height: 33px;
+    border: none;
+    outline: none;
+    background-color: transparent;
+    transform: translateY(40%);
+}
+
+
 .logo {
     grid-area: 1 / 1 / 2 / 2;
     transition: transform 0.33s ease;
@@ -116,7 +140,7 @@ input {
     transform: translateY(30%); /* Add a little bit of vertical motion */
     font-family: 'Neue Haas Grotesk', sans-serif;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1em;
 }
 
 .move-up.link {
@@ -142,3 +166,7 @@ input {
 .move-up.right-link {
     transform: translateY(0); /* Move the right link to normal position */
 }
+
+
+
+
