@@ -20,7 +20,8 @@
                         handleNoiseRatioChange,
                         handleStrokeColorChange,
                         handleStrokeWChange,
-                        xVel, yVel, handleXVelChange, handleYVelChange
+                        xVel, yVel, handleXVelChange, handleYVelChange,
+                        setCurrentSketch, currentSketch
                     }) => {
         const [scrolled, setScrolled] = useState(false);
 
@@ -46,10 +47,12 @@
                 <div className="navbar-left">
                     <ul href="#" className={`link ${scrolled ? "move-up" : ""}`}>
                         <div>
+
                         <span>noise</span>{" "}
                         <input
                             type="number"
                             value={noiseRatio}
+                            step="0.0001"
                             onChange={(e) => handleNoiseRatioChange(parseFloat(e.target.value))}
                         />
                         </div>
@@ -86,7 +89,47 @@
                             onChange={(e) => handleTopBotMarginChange(e.target.value)}
                         />
                         </div>
-                        <div>
+                            {/*<div>*/}
+                            {/*<span>amount</span>{" "}*/}
+                            {/*<input*/}
+                            {/*    type="number"*/}
+                            {/*    value={nb}*/}
+                            {/*    onChange={(e) => handleNbChange(e.target.value)}*/}
+                            {/*/>*/}
+                            {/*</div>*/}
+
+
+                            {/*<div>*/}
+                            {/*    <span>SPEED</span>*/}
+                            {/*    <div> <span>XMIN</span> */}
+                            {/*        <input*/}
+                            {/*            type="number"*/}
+                            {/*            value={xVel[0]}*/}
+                            {/*            onChange={(e) => handleXVelChange([e.target.value, xVel[1]])}*/}
+                            {/*        />*/}
+                            {/*        <span>XMAX</span>*/}
+                            {/*        <input*/}
+                            {/*            type="number"*/}
+                            {/*            value={xVel[1]}*/}
+                            {/*            onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
+                            {/*        />*/}
+                            {/*    </div>*/}
+                            {/*    <div> <span>YMIN</span> */}
+                            {/*        <input*/}
+                            {/*            type="number"*/}
+                            {/*            value={yVel[0]}*/}
+                            {/*            onChange={(e) => handleYVelChange([e.target.value, yVel[1]])}*/}
+                            {/*        />*/}
+                            {/*        <span>YMAX</span>*/}
+                            {/*        <input*/}
+                            {/*            type="number"*/}
+                            {/*            value={yVel[1]}*/}
+                            {/*            onChange={(e) => handleYVelChange([yVel[0], e.target.value])}*/}
+                            {/*        />*/}
+                            {/*    */}
+                            {/*    </div>*/}
+                            {/*</div>*/}
+
                         {/*<input className="xvel-input1"*/}
                         {/*       type="number"*/}
                         {/*       value={xVel[0]}*/}
@@ -99,7 +142,7 @@
                         {/*       onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
                         {/*/>*/}
 
-                        </div>
+
                     </ul>
                 </div>
                 <div className="navbar-center">
@@ -124,7 +167,15 @@
                         {/*    value={xVel[1]}*/}
                         {/*    onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
                         {/*    />*/}
-                        <span>CANVAS</span>{" "}
+                        <span>CANVAS</span>{"       "}
+                        {/*<select*/}
+                        {/*    className="sketch-input"*/}
+                        {/*    value={currentSketch}*/}
+                        {/*    onChange={(e) => setCurrentSketch(e.target.value)}*/}
+                        {/*>*/}
+                        {/*    <option value="star">starchart</option>*/}
+                        {/*    <option value="flow">noiseflow</option>*/}
+                        {/*</select>*/}
                         <input
                             type="color"
                             value={backgroundColor}
