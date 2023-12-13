@@ -73,17 +73,16 @@ function App() {
             /> ) : currentSketch === "star" ? (
 
             <StarSketch />
-                ) : null
-            )}
-            <div className="footer" >
+                ) : null)}
+            {/*<div className="footer" >*/}
 
-                {/*<span>h </span>*/}
-                {/*<input type="string"*/}
-                {/*       value={canvasHeight}*/}
-                {/*       onChange={(e) => setCanvasHeight(parseInt(e.target.value, 10))}*/}
-                {/*/>*/}
+            {/*    <span>h </span>*/}
+            {/*    <input type="string"*/}
+            {/*           value={canvasHeight}*/}
+            {/*           onChange={(e) => setCanvasHeight(parseInt(e.target.value, 10))}*/}
+            {/*    />*/}
 
-            </div>
+            {/*</div>*/}
 
         </div>
     );

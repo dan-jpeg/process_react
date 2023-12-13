@@ -74,13 +74,14 @@
                             onChange={(e) => handleStrokeWChange(parseFloat(e.target.value))}
                         />
                         </div>
-                        <div>
+                       <div>
                         <span>  MARGIN X</span>{" "}
                         <input className="margin-input"
                                type="number"
                                value={margin}
                                onChange={(e) => handleMarginChange(e.target.value)}
                         />
+
 
                         <span>MARGIN Y</span>{" "}
                         <input
