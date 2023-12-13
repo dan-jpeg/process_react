@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import p5 from "p5";
-import "./psketch.css";
+import "../css/psketch.css";
 
 const ParticleSketch = ({
                             noiseRatio = 0.001,
@@ -13,8 +13,7 @@ const ParticleSketch = ({
                             xVel, yVel, canvasHeight
                         }) => {
     useEffect(() => {
-        const myp5 = new p5((p) => {
-            let particles = Array(nb);
+        const myp5 = new p5((p) => {;let particles = Array(nb);
 
             class Particle {
                 constructor(x, y) {

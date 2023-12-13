@@ -1,9 +1,9 @@
     import React, { useState, useEffect } from "react";
-    import "./AltNavBar.css";
-    import logo1 from "./logoSmall.png";
-    import logo2 from "./ph-riposte copy.png";
-    import homeIcon from "./home.svg";
-    import layerIcon from "./3-layers.svg";
+    import "../css/AltNavBar.css";
+    import logo1 from "../asset/logoSmall.png";
+    import logo2 from "../asset/ph-riposte copy.png";
+    import homeIcon from "../asset/home.svg";
+    import layerIcon from "../3-layers.svg";
 
     const Navbar = ({
                         noiseRatio,
@@ -72,14 +72,14 @@
                         />
                         </div>
                         <div>
-                        <span>  MARGIN H</span>{" "}
+                        <span>  MARGIN X</span>{" "}
                         <input className="margin-input"
                                type="number"
                                value={margin}
                                onChange={(e) => handleMarginChange(e.target.value)}
                         />
 
-                        <span>MARGIN V</span>{" "}
+                        <span>MARGIN Y</span>{" "}
                         <input
                             type="number"
                             value={topBotMargin}
@@ -124,7 +124,7 @@
                         {/*    value={xVel[1]}*/}
                         {/*    onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
                         {/*    />*/}
-
+                        <span>CANVAS</span>{" "}
                         <input
                             type="color"
                             value={backgroundColor}

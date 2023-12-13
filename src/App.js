@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import "./App.css";
-import ParticleSketch from "./ParticleSketch";
-import Navbar from "./AltNavBar";
+import "./css/App.css";
+import ParticleSketch from "./components/ParticleSketch";
+import Navbar from "./components/AltNavBar";
 
 function App() {
     const [noiseRatio, setNoiseRatio] = useState(0.001);
