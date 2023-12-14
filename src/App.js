@@ -6,16 +6,17 @@ import StarSketch from "./components/StarSketch";
 
 function App() {
     const [noiseRatio, setNoiseRatio] = useState(0.001);
-    const [nb, setNb] = useState(250);
+    const [nb, setNb] = useState(200);
     const [strokeW, setStrokeW] = useState(1.66);
-    const [margin, setMargin] = useState(parseInt(window.innerWidth * 0.20))
+    const [marginX, setMarginX] = useState(parseInt(window.innerWidth * 0.20))
     const [backgroundColor, setBackgroundColor] = useState([230, 230, 230]);
     const [strokeColor, setStrokeColor] = useState([255, 255, 255]);
-    const [xVel, setXVel] = useState([-1, 20]);
+    const [xVel, setXVel] = useState([-1, 1]);
     const [yVel, setYVel] = useState([-1, 0.05]);
     const [canvasHeight, setCanvasHeight] = useState(parseInt(window.innerHeight * 0.6));
-    const [topBotMargin, setTopBotMargin] = useState(parseInt(window.innerWidth * 0.10));
+    const [marginY, setMarginY] = useState(parseInt(window.innerWidth * 0.10));
     const [currentSketch, setCurrentSketch] = useState("flow");
+    const [dMin, setDmin] = useState(66);
 
 
     const hexToRgb = (hex) => {
@@ -32,6 +33,22 @@ function App() {
         setBackgroundColor(rgbArray);
     };
 
+    const handleSketchChange = (value) => {
+        setCurrentSketch(value);
+        if (currentSketch === "flow") {
+            setBackgroundColor([20, 40, 30])
+            setMarginX(0)
+            setMarginY(0)
+        }
+    }
+
+    const handleNbChange = (value) => {
+        if (value > 0 && value) {
+            setNb(value)
+        } else {
+            setNb(1)
+        }
+    }
 
     return (
         <div className="App">
@@ -39,23 +56,25 @@ function App() {
                 noiseRatio={noiseRatio}
                 nb={nb}
                 strokeW={strokeW}
-                margin={margin}
-                topBotMargin={topBotMargin}
+                marginX={marginX}
+                marginY={marginY}
                 backgroundColor={backgroundColor}w
                 strokeColor={strokeColor}
-                handleNbChange={(value) => setNb(value)}
+                handleNbChange={(value) => handleNbChange(value)}
                 handleNoiseRatioChange={(value) => setNoiseRatio(value)}
                 handleStrokeWChange={(value) => setStrokeW(value)}
-                handleMarginChange={(value) => setMargin(parseInt(value, 10))}
-                handleTopBotMarginChange={(value) => setTopBotMargin(parseInt(value, 10))}
+                handleMarginXChange={(value) => setMarginX(parseInt(value, 10))}
+                handleMarginYChange={(value) => setMarginY(parseInt(value, 10))}
                 handleBackgroundColorChange={handleBackgroundColorChange}
                 handleStrokeColorChange={(value) => setStrokeColor(value)}
                 xVel={xVel}
                 yVel={yVel}
                 handleXVelChange={(value) => setXVel(value)}
                 handleYVelChange={(value) => setYVel(value)}
-                setCurrentSketch={(value) => setCurrentSketch(value)}
                 currentSketch={currentSketch}
+                handleSketchChange={handleSketchChange}
+                dMin={dMin}
+                handleDMinChange={(value) => setDmin(parseInt(value))}
 
             />
             {(currentSketch === "flow" ? (
@@ -63,8 +82,8 @@ function App() {
                 noiseRatio={noiseRatio}
                 nb={nb}
                 strokeW={strokeW}
-                margin={margin}
-                topBotMargin={topBotMargin}
+                marginX={marginX}
+                marginY={marginY}
                 backgroundColor={backgroundColor}
                 strokeColor={strokeColor}
                 xVel={xVel}
@@ -72,7 +91,18 @@ function App() {
                 canvasHeight={canvasHeight}
             /> ) : currentSketch === "star" ? (
 
-            <StarSketch />
+            <StarSketch
+                currentsketch={currentSketch}
+                backgroundColor={backgroundColor}
+                canvasHeight={canvasHeight}
+                dMin={dMin}
+                nb={nb}
+                marginY={marginY}
+                marginX={marginX}
+                xVel={xVel}
+                yVel={yVel}
+
+            />
                 ) : null)}
             {/*<div className="footer" >*/}
 

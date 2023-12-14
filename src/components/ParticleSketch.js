@@ -6,8 +6,8 @@ const ParticleSketch = ({
                             noiseRatio = 0.001,
                             nb = 250,
                             strokeW = 1.66,
-                            margin,
-                            topBotMargin,
+                            marginX,
+                            marginY,
                             backgroundColor,
                             strokeColor,
                             xVel, yVel, canvasHeight
@@ -33,15 +33,15 @@ const ParticleSketch = ({
                     this.x += this.vx;
                     this.y += this.vy;
 
-                    // Use the margin and topBotMargin props for boundary checks
+                    // Use the marginX and marginY props for boundary checks
                     if (
-                        this.x < margin ||
-                        this.x > p.width - margin ||
-                        this.y < topBotMargin ||
-                        this.y > p.height - topBotMargin
+                        this.x < marginX ||
+                        this.x > p.width - marginX ||
+                        this.y < marginY ||
+                        this.y > p.height - marginY
                     ) {
-                        this.x = p.random(margin, p.width - margin);
-                        this.y = p.random(topBotMargin, p.height - topBotMargin);
+                        this.x = p.random(marginX, p.width - marginX);
+                        this.y = p.random(marginY, p.height - marginY);
                     }
 
                     p.strokeWeight(strokeW);
@@ -51,15 +51,15 @@ const ParticleSketch = ({
 
             p.setup = () => {
                 p.createCanvas(p.windowWidth, canvasHeight).parent(
-                    "sketch-container"
+                    "particle-sketch-container"
                 );
                 p.angleMode(p.DEGREES);
                 p.background(...backgroundColor);
                 particles = Array(nb);
                 for (let i = 0; i < nb; i++) {
                     particles[i] = new Particle(
-                        p.random(margin, p.width - margin),
-                        p.random(topBotMargin, p.height - topBotMargin)
+                        p.random(marginX, p.width - marginX),
+                        p.random(marginY, p.height - marginY)
                     );
                 }
             };
@@ -76,9 +76,9 @@ const ParticleSketch = ({
         return () => {
             myp5.remove();
         };
-    }, [noiseRatio, nb, strokeW, margin, topBotMargin, backgroundColor, strokeColor, xVel]);
+    }, [noiseRatio, nb, strokeW, marginX, marginY, backgroundColor, strokeColor, xVel]);
 
-    return <div id="sketch-container" />;
+    return <div id="particle-sketch-container" />;
 };
 
 export default ParticleSketch;

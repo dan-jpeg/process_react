@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from 'react';
 import p5 from 'p5';
 
-function StarSketch() {
-    // const [nb, setNb] = useState(100);
-    // const [dMin, setDMin] = useState(150);
+function StarSketch( {currentsketch, backgroundColor, dMin, nb, marginX, marginY, yVel, xVel}) {
+
+
     // const [particles, setParticles] = useState([]);
-    // const [backgroundColor, setBackgroundColor] = useState([1, 1, 1]);
+
     // const [strokeColor, setStrokeColor] = useState([255, 255, 255]);
     // const velocityX = [-1, 0.05];
     // const velocityY = [-0.05, 0.1];
-    const nb = 100;
-    const dMin = 150;
+    // const nb = 100;
+    // const dMin = 150;
+
 
     useEffect(() => {
         const sketch = (p) => {
@@ -21,8 +22,8 @@ function StarSketch() {
                     this.size = p.random(2, 6);
                     this.x = x;
                     this.y = y;
-                    this.vx = p.random(-1, 0.05);
-                    this.vy = p.random(-0.05, 0.1);
+                    this.vx = p.random(xVel[0], xVel[1]);
+                    this.vy = p.random(yVel[0], yVel[1]);
                 }
 
                 draw() {
@@ -30,7 +31,7 @@ function StarSketch() {
                     this.x += this.vx;
                     this.y += this.vy;
 
-                    if (this.x < 0 || this.x > p.width || this.y < 0 || this.y > p.height) {
+                    if (this.x < marginX  || this.x > p.width-marginX || this.y < marginY || this.y > p.height-marginY) {
                         this.x = p.random(0, p.width);
                         this.y = p.random(0, p.height);
                     }
@@ -40,14 +41,15 @@ function StarSketch() {
             }
 
             p.setup = () => {
-                p.createCanvas(p.windowWidth, p.windowHeight);
+                p.createCanvas((p.windowWidth), (p.windowHeight*0.9)).parent(
+                    "star-sketch-container");
                 for (let i = 0; i < nb; i++) {
                     particles.push(new Particle(p.random(0, p.width), p.random(0, p.height)));
                 }
             };
 
             p.draw = () => {
-                p.background("#c4c7d3");
+                p.background(backgroundColor);
                 p.noStroke();
                 p.fill(255);
 
@@ -73,9 +75,9 @@ function StarSketch() {
         return () => {
             myp5.remove();
         };
-    }, []);
+    }, [currentsketch, backgroundColor, dMin, nb, marginX, marginY, xVel, yVel]);
 
-    return <div id="sketch-container" />;
+    return <div id="star-sketch-container" />;
 }
 
 export default StarSketch;

@@ -48,21 +48,37 @@
 }
 
 .navbar-left {
-    display: inline-block;
+    display: flex;
     align-items: center;
     justify-content: flex-start; /* Aligns to the left edge */
     padding-left: 10px; /* Some padding to ensure it doesn't stick right to the edge */
     flex-direction: column;
     text-align: left;
     min-width: 177px;
+    background-color: rgba(255,255,255, .8);
+    backdrop-filter: blur(2px);
+    max-width: 30vw;
 }
 
+input.noise-input {
+    width: 300px;
+}
+
+input.noise-input:focus {
+    width: 200px;
+    border: lightblue 1px solid
+}
 .navbar-right {
     display: flex;
-    align-items: flex-start;
+    flex-direction: column;
+    align-items: center;
     justify-content: space-around; /* Aligns to the right edge */
     padding-right: 10px; /* Some padding to ensure it doesn't stick right to the edge */
     min-width: 177px;
+    text-align: center;
+    background-color: rgba(255,255,255, .8);
+    backdrop-filter: blur(2px);
+    max-width: 320px
 }
 
 .navbar-center {
@@ -75,6 +91,7 @@
 
 input[type="number"]{
     background-color: transparent;
+    width: 100px;
     border: none;
     outline: none;
     color: #333;
@@ -99,7 +116,7 @@ input[type="color"] {
     border: none;
     outline: none;
     background-color: transparent;
-    transform: translateY(40%);
+    transform: translateY(33%)
 }
 
 
