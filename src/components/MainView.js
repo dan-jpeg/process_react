@@ -25,6 +25,7 @@ function MainView() {
     const [maxNb, setMaxNb] = useState(77777);
     const [borderColor, setBorderColor] = useState([0, 0, 0]); // Default border color: black
     const [borderWidth, setBorderWidth] = useState(0);        // Default border width
+    const [sketchUrl, setSketchUrl] = useState('');           // URL of the saved sketch (for sharing)
 
     const validateInput = () => {
         let isValid = true;
@@ -84,6 +85,8 @@ function MainView() {
 
             const result = await response.json();
             console.log('Sketch saved! URL:', result.uniqueUrl);
+            setSketchUrl(result.uniqueUrl);
+
             // Do something with result.uniqueUrl (display or share)
         } catch (error) {
             console.error('There was a problem with the fetch operation:', error);
@@ -276,6 +279,7 @@ function MainView() {
                 canvasOptionsExpanded={canvasOptionsExpanded}
                 toggleExpand={toggleExpand}
                 saveSketch={saveSketch}
+                sketchUrl={sketchUrl}
 
 
             />
