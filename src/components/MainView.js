@@ -71,7 +71,7 @@ function MainView() {
         };
 
         try {
-            const response = await fetch('http://localhost:3001/save', {
+            const response = await fetch('https://processbackend-production.up.railway.app/save', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

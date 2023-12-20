@@ -167,7 +167,7 @@
                             <span onClick={saveSketch}> SAVE SKETCH</span>
                         </div>
                         { sketchUrl ? <div className="sketch-url-display">
-                                <span>{` url :${sketchUrl}`}</span>
+                                <span>{` url ${sketchUrl}`}</span>
                             </div> : null }
 
 

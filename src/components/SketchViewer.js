@@ -9,7 +9,7 @@ const SketchViewer = () => {
     const { id } = useParams();
 
     useEffect(() => {
-        fetch(`http://localhost:3001/sketch/${id}`)
+        fetch(`https://processbackend-production.up.railway.app/sketch/${id}`)
             .then(response => {
                 if (!response.ok) {
                     throw new Error('Network response was not ok');
