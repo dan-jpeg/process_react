@@ -1,16 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import p5 from 'p5';
 
-function StarSketch( {currentsketch, backgroundColor, dMin, nb, marginX, marginY, yVel, xVel}) {
+function StarSketch( {currentSketch, backgroundColor, dMin, nb, marginX, marginY, yVel, xVel, canvasHeight, canvasWidth, borderWidth, borderColor}) {
 
-
-    // const [particles, setParticles] = useState([]);
 
     // const [strokeColor, setStrokeColor] = useState([255, 255, 255]);
-    // const velocityX = [-1, 0.05];
-    // const velocityY = [-0.05, 0.1];
-    // const nb = 100;
-    // const dMin = 150;
 
 
     useEffect(() => {
@@ -25,6 +19,8 @@ function StarSketch( {currentsketch, backgroundColor, dMin, nb, marginX, marginY
                     this.vx = p.random(xVel[0], xVel[1]);
                     this.vy = p.random(yVel[0], yVel[1]);
                 }
+
+
 
                 draw() {
                     p.stroke(255);
@@ -41,12 +37,22 @@ function StarSketch( {currentsketch, backgroundColor, dMin, nb, marginX, marginY
             }
 
             p.setup = () => {
-                p.createCanvas((p.windowWidth), (p.windowHeight*0.9)).parent(
+                p.createCanvas((canvasWidth), (canvasHeight)).parent(
                     "star-sketch-container");
                 for (let i = 0; i < nb; i++) {
                     particles.push(new Particle(p.random(0, p.width), p.random(0, p.height)));
                 }
+                drawBorder(p);
             };
+
+            const drawBorder = (p) => {
+                p.push();
+                p.stroke(...borderColor);
+                p.strokeWeight(borderWidth);
+                p.noFill();
+                p.rect(0, 0, canvasWidth, canvasHeight);
+                p.pop();
+            }
 
             p.draw = () => {
                 p.background(backgroundColor);
@@ -75,7 +81,7 @@ function StarSketch( {currentsketch, backgroundColor, dMin, nb, marginX, marginY
         return () => {
             myp5.remove();
         };
-    }, [currentsketch, backgroundColor, dMin, nb, marginX, marginY, xVel, yVel]);
+    }, [currentSketch, backgroundColor, dMin, nb, marginX, marginY, xVel, yVel, canvasWidth, canvasHeight]);
 
     return <div id="star-sketch-container" />;
 }

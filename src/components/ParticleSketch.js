@@ -1,6 +1,7 @@
-import { useEffect } from "react";
+import {useEffect, useRef} from "react";
 import p5 from "p5";
 import "../css/psketch.css";
+
 
 const ParticleSketch = ({
                             noiseRatio = 0.001,
@@ -10,10 +11,18 @@ const ParticleSketch = ({
                             marginY,
                             backgroundColor,
                             strokeColor,
-                            xVel, yVel, canvasHeight
+                            xVel, yVel, canvasHeight, canvasWidth,
+                            borderColor, // Default border color: black
+                            borderWidth,
                         }) => {
+
+    const canvasRef = useRef(null);
+    const isKeyHandled = useRef(false);
+
     useEffect(() => {
-        const myp5 = new p5((p) => {;let particles = Array(nb);
+        const myp5 = new p5((p) => {
+            let particles = Array(nb);
+
 
             class Particle {
                 constructor(x, y) {
@@ -50,9 +59,9 @@ const ParticleSketch = ({
             }
 
             p.setup = () => {
-                p.createCanvas(p.windowWidth, canvasHeight).parent(
-                    "particle-sketch-container"
-                );
+                canvasRef.current = p.createCanvas(canvasWidth, canvasHeight).parent(
+                   "particle-sketch-container"
+               )
                 p.angleMode(p.DEGREES);
                 p.background(...backgroundColor);
                 particles = Array(nb);
@@ -62,7 +71,17 @@ const ParticleSketch = ({
                         p.random(marginY, p.height - marginY)
                     );
                 }
+                drawBorder(p);
             };
+
+            const drawBorder = (p) => {
+                p.push();
+                p.stroke(...borderColor);
+                p.strokeWeight(borderWidth);
+                p.noFill();
+                p.rect(0, 0, canvasWidth, canvasHeight);
+                p.pop();
+            }
 
             p.draw = () => {
                 p.stroke(...strokeColor, p.map(p.frameCount, 1, 400, 255, 0));
@@ -71,12 +90,44 @@ const ParticleSketch = ({
                     particle.draw();
                 }
             };
+
+            // p.windowResized = () => {
+            //     p.resizeCanvas(canvasWidth, canvasHeight);
+            // };
+
+            // p.keyPressed = () => {
+            //     if (p.key === 'p') {
+            //         p.save('process-export.png');
+            //     }
+            // }
+
+            p.keyPressed = () => {
+                if (p.key === 'p' && !isKeyHandled.current) {
+                    const dataURL = canvasRef.current.elt.toDataURL('image/png');
+                    const link = document.createElement('a');
+                    link.download = 'process-export.png';
+                    link.href = dataURL;
+                    link.click();
+                    isKeyHandled.current = true;
+                }
+            };
+
+            p.keyReleased = () => {
+                if (p.key === 'p') {
+                    isKeyHandled.current = false;
+                }
+            }
         });
 
         return () => {
             myp5.remove();
         };
-    }, [noiseRatio, nb, strokeW, marginX, marginY, backgroundColor, strokeColor, xVel]);
+    }, [
+             noiseRatio, nb, strokeW, marginX, marginY,
+             backgroundColor, strokeColor, xVel, canvasHeight,
+             canvasWidth, borderColor, borderWidth
+             ]
+    );
 
     return <div id="particle-sketch-container" />;
 };

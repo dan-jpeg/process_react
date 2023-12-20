@@ -4,4 +4,5 @@
     align-items: center;
     height: 90vh;
     transform: translateY(2%);
+    z-index: 2;
 }

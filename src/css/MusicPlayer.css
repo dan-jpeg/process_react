@@ -1,0 +1,24 @@
+.music-player {
+    position: relative;
+    padding-top: 2rem;
+    right: -150px;
+    top: 50%;
+    transform: translateY(2%);
+    opacity: 0.2;
+    transition: opacity 0.3s ease;
+}
+
+.music-player:hover {
+    opacity: 1;
+}
+
+.music-player button {
+    background-color: #fff;
+    text-align: right;
+    border: none;
+    padding: 10px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: .8rem
+    /* Add any additional styling for the button here */
+}

@@ -4,6 +4,7 @@
     import logo2 from "../asset/ph-riposte copy.png";
     import homeIcon from "../asset/home.svg";
     import layerIcon from "../3-layers.svg";
+    import MusicPlayer from "./MusicPlayer";
 
     const Navbar = ({
                         noiseRatio,
@@ -21,7 +22,14 @@
                         handleStrokeColorChange,
                         handleStrokeWChange,
                         xVel, yVel, handleXVelChange, handleYVelChange,
-                        setCurrentSketch, currentSketch, dMin, handleDMinChange, handleSketchChange
+                        setCurrentSketch,
+                        currentSketch,
+                        dMin,
+                        handleDMinChange,
+                        handleSketchChange,
+                        toggleExpand,
+                        canvasOptionsExpanded,
+                        saveSketch
                     }) => {
         const [scrolled, setScrolled] = useState(false);
 
@@ -40,12 +48,29 @@
             return () => window.removeEventListener("scroll", handleScroll);
         }, []);
 
+        const rgbToHex = (r, g, b) => {
+            // Convert an individual number to a hexadecimal string
+            const toHex = (n) => {
+                // Ensure the number is within the range 0-255
+                if (n < 0) n = 0;
+                if (n > 255) n = 255;
+
+                // Convert to hexadecimal and add a leading zero if necessary
+                let hex = n.toString(16);
+                return hex.length === 1 ? '0' + hex : hex;
+            };
+
+            // Convert each component and concatenate
+            return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+        };
+
 
 
         return (
             <div className={`navbar ${scrolled ? "scrolled" : ""}`}>
                 <div className="navbar-left">
-                    <ul href="#" className={`link ${scrolled ? "move-up" : ""}`}>
+
+                    <ul className={`link ${scrolled ? "move-up" : ""}`}>
 
                         {currentSketch === "flow" && (
                         <div>
@@ -80,22 +105,8 @@
                         </div>
 
 
-                       <div>
-                        <span>  marginX X</span>{" "}
-                        <input className="marginX-input"
-                               type="number"
-                               value={marginX}
-                               onChange={(e) => handleMarginXChange(e.target.value)}
-                        />
 
 
-                        <span>marginX Y</span>{" "}
-                        <input
-                            type="number"
-                            value={marginY}
-                            onChange={(e) => handleMarginYChange(e.target.value)}
-                        />
-                        </div>
 
 
                             {/*<div>*/}
@@ -109,46 +120,52 @@
 
                         {currentSketch === "star" && (
                             <div>
-                                <div>
-                                    <span>SPEED</span>
-                                    <div> <span>XMIN</span>
+                                <div style={{ paddingTop: "1rem"}}>
+                                    <span>LINE DIST</span> {" "}
+                                    <input
+                                        type="number"
+                                        value={dMin}
+                                        onChange={(e) => handleDMinChange(e.target.value)}
+                                    />
+                                    <div> <span>XMIN</span>{" "}
                                         <input
                                             type="number"
                                             value={xVel[0]}
-                                            onChange={(e) => handleXVelChange([e.target.value, xVel[1]])}
+                                            onChange={(e) => handleXVelChange(0, e.target.value)}
                                         />
-                                        <span>XMAX</span>
+                                        <span>XMAX</span>{" "}
                                         <input
                                             type="number"
                                             value={xVel[1]}
-                                            onChange={(e) => handleXVelChange([xVel[0], e.target.value])}
+                                            onChange={(e) => handleXVelChange(1, e.target.value)}
                                         />
                                     </div>
-                                    <div> <span>YMIN</span>
+                                    <div> <span>YMIN</span>{" "}
                                         <input
                                             type="number"
                                             value={yVel[0]}
-                                            onChange={(e) => handleYVelChange([e.target.value, yVel[1]])}
+                                            onChange={(e) => handleYVelChange(0, e.target.value)}
                                         />
-                                        <span>YMAX</span>
+                                        <span>YMAX</span>{" "}
                                         <input
                                             type="number"
                                             value={yVel[1]}
-                                            onChange={(e) => handleYVelChange([yVel[0], e.target.value])}
+                                            onChange={(e) => handleYVelChange(1, e.target.value)}
                                         />
 
                                     </div>
 
                                 </div>
-                                <span>MIN DISTANCE</span>
-                                <input
-                                    type="number"
-                                    value={dMin}
-                                    onChange={(e) => handleDMinChange(e.target.value)}
-                                />
+
                             </div>
                         )}
-
+                        <div className="show-canvas-options-button">
+                            <span onClick={toggleExpand}> {`${canvasOptionsExpanded ? "hide" : "show" } CANVAS OPTIONS`}</span>
+                        </div>
+                        <div className="save-sketch-button">
+                            <span onClick={saveSketch}> SAVE SKETCH</span>
+                        </div>
+                        <MusicPlayer />
 
                          </ul>
 
@@ -190,7 +207,7 @@
                         {/*    value={xVel[1]}*/}
                         {/*    onChange={(e) => handleXVelChange([xVel[0], e.target.value])}*/}
                         {/*    />*/}
-                       <div> <span>CANVAS</span>{"       "}
+                       <div>
                            {/*<span>amount</span>{" "}*/}
                            {/*<input*/}
                            {/*    type="number"*/}
@@ -208,21 +225,25 @@
                        {/*        onChange={(e) => handleStrokeWChange(parseFloat(e.target.value))}*/}
                        {/*    />*/}
                        {/*</div>*/}
-                        <select
-                            className="sketch-input"
-                            value={currentSketch}
-                            onChange={(e) => (handleSketchChange(e.target.value))}
-                        >
-                            <option value="star">starchart</option>
-                            <option value="flow">noiseflow</option>
-                        </select>
 
-                        <input
-                            type="color"
-                            value={backgroundColor}
-                            onChange={(e) => handleBackgroundColorChange(e.target.value)}
-                        />
-                            </div>
+                               <div className="sketch-select-div">
+            <span
+                className={`sketch-select-span ${currentSketch === "flow" ? "selected" : ""}`}
+                onClick={() => handleSketchChange("flow")}
+            >
+                noiseflow
+            </span>
+
+                                   <span
+                                       className={`sketch-select-span ${currentSketch === "star" ? "selected" : ""}`}
+                                       onClick={() => handleSketchChange("star")}
+                                   >
+                starchart
+            </span>
+                               </div>
+
+                           </div>
+
                     </ul>
                 </div>
             </div>

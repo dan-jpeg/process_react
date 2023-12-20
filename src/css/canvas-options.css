@@ -1,0 +1,149 @@
+/* General Styles for the Canvas Options */
+.canvas-options {
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    font-size: .66rem;
+    color: #444;
+    padding: 12px;
+    position: fixed; /* Changed from absolute to fixed */
+    bottom: 0;
+    right: 50%; /* Ensure full width at the bottom */
+    max-height: 0; /* Initially hidden */
+    overflow: hidden; /* Hide inner content initially */
+    transition: max-height 0.5s ease, opacity 0.5s ease; /* Smooth transition for expanding and collapsing */
+    opacity: 0;
+    width: 66vw;
+    transform: translateX(50%);
+    background-color: rgba(255,255,255, .7);
+    backdrop-filter: blur(6px);
+
+}
+
+.show-canvas-options-button {
+    z-index: 0;
+}
+
+.canvas-options.expanded {
+    max-height: 80px; /* Adjust as needed for the expanded size */
+    opacity: 1;
+    border: 1px dotted #777;
+}
+
+.canvas-options-title {
+    /* Styles for the title */
+    margin-bottom: 10px; /* Example spacing */
+}
+
+.canvas-options-content {
+    /* Styles for the content container */
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.canvas-options-content-item {
+    /* Styles for each item */
+    display: flex; /* Makes the container effectively invisible */
+    transition: all 1s ease; /* Smooth transition for hover and focus */
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Input and Span Styles */
+.canvas-options-content-item input {
+    width: 80px;
+    height: 20PX;
+    border: none;
+    background-color: transparent;
+    padding: 0 0 0 0;
+    font-size: .8rem;
+    color: #777777;
+    text-align: right;
+}
+.canvas-options-content-item span {
+    /* Shared styles for inputs and spans */
+    padding: 2px; /* Example padding */
+    margin: 0 0; /* Vertical margin */
+    opacity: 0.8;
+    border: none;
+    text-align: center;
+}
+
+/* Hover and Focus Styles */
+.canvas-options-content-item input:hover,
+.canvas-options-content-item span:hover,
+.canvas-options-content-item input:focus,
+/* Non-focused Styles */
+.canvas-options-content-item input:not(:focus),
+.canvas-options-content-item span:not(:focus) {
+    /* Styles for non-focus.ed elements - Example: lower opacity or blur */
+    /*opacity: 0.5;*/
+}
+.canvas-options-content-item-color {
+    flex-direction: column;
+    display: flex;
+    border: #333 dot-dot-dash 1px;
+}
+
+.canvas-options-content-item-color input {
+
+    padding-bottom: 5px;
+    font-size: .8rem;
+    text-align: left;
+    padding-left: 10px;
+    border: none;
+    height: 45px    ;
+
+}
+
+.color-picker.border input {
+    height: 18px;
+    transition: all 200ms linear;
+    transform: translateY(-10%);
+
+}
+
+.color-picker.border input:hover {
+    opacity: 1;
+
+}
+
+.canvas-options-content-item.border input {
+    width: 50px;
+}
+
+/* Styles for the border container */
+.canvas-options-content-item.border {
+    overflow: hidden;
+    padding: 12px 24px 12px 24px;
+    height: 60px; /* height of the label */
+    transition: height 0.5s ease, transform 0.5s ease;
+    border: 1px solid #999;
+
+}
+
+.canvas-options-content-item.border > .label {
+    display: block;
+    transition: visibility 0.5s ease, opacity 0.5s ease;
+}
+
+/* Styles for the inputs - initially hidden */
+.canvas-options-content-item.border > .inputs {
+    max-height: 0;
+    overflow: hidden;
+    visibility: hidden;
+    opacity: 0;
+    transition: max-height 0.5s ease, visibility 0.5s ease, opacity 0.5s ease;
+}
+
+/* Hover State - hide label and show inputs */
+.canvas-options-content-item.border:hover > .label {
+    visibility: hidden;
+    opacity: 0;
+}
+
+.canvas-options-content-item.border:hover > .inputs {
+    max-height: 200px; /* Adjust based on content */
+    visibility: visible;
+    opacity: 1;
+}

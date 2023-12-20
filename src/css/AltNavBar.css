@@ -120,6 +120,18 @@ input[type="color"] {
 }
 
 
+
+.show-canvas-options-button {
+    padding: 20px 0 0 0;
+    cursor: pointer;
+    color: #888;
+}
+
+.show-canvas-options-button:hover {
+    padding: 20px 0 0 0;
+    cursor: pointer;
+    color: #335
+}
 .logo {
     grid-area: 1 / 1 / 2 / 2;
     transition: transform 0.33s ease;
@@ -184,9 +196,95 @@ input[type="color"] {
     transform: translateY(0); /* Move the right link to normal position */
 }
 
+/* Style the dropdown button */
+.dropbtn {
+    background-color: transparent;
+    backdrop-filter: blur(2px);
+    color: black;
+    padding: 2px;
+    font-size: .7rem;
+    border: none;
+    cursor: pointer;
+    text-transform: lowercase;
+    font-family: 'Neue Haas Grotesk', sans-serif;
+    text-align: left;
+    transition: all 222ms ease;
+}
+
+/* Container for the dropdown content */
+.dropdown {
+    position: relative;
+    display: inline-block;
+    text-align: center;
+
+    border: 1px dot-dot-dash #888;
+    transition: all 0.4s ease;
+}
+
+/* Dropdown content */
+.dropdown-content {
+    padding: 1.5vh 0 0 0;
+    display: none;
+    position: absolute;
+    background-color: #fff;
+    min-width: 160px;
+    z-index: 1;
+}
+
+/* Links inside the dropdown */
+.dropdown-content a {
+    color: black;
+    padding: 6px 8px;
+    text-decoration: none;
+    display: block;
+}
+
+/* Change color of dropdown links on hover */
+.dropdown-content a:hover {background-color: #fff;
+    border-radius: 3px;
+    letter-spacing: 2px;
+}
+
+/* Show the dropdown menu on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+    border-radius: 3px;
+    letter-spacing: 1px;
+
+}
+
+/* Change the background color of the dropdown button when the dropdown content is shown */
+.dropdown:hover .dropbtn {
+    background-color: transparent;
+    border-radius: 3px;
+    letter-spacing: 10px;
+}
+
 
 @media only screen and (max-width: 979px) {
     .navbar-left {
         max-width: 190px;
     }
+}
+
+.sketch-select-span {
+    opacity: 0.1;
+    cursor: none;
+    padding: 2px;
+    font-size: 2.3rem;
+}
+
+.sketch-select-div {
+    padding: 12px 0 12px 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: right;
+    align-items: flex-end;
+}
+
+.sketch-select-span:hover {
+    opacity: 1;
+}
+.sketch-select-span.selected {
+    opacity: 1;
 }
